@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>퀴즈 맞추기 게임</title>
+    <script>
+        const quizList = [{
+            'quizQuestion':'문제 1',
+            'quizAnswer': '1'
+        }, {
+            'quizQuestion':'문제 2',
+            'quizAnswer': '2'
+        }, {
+            'quizQuestion':'문제 3',
+            'quizAnswer': '3'
+        }, {
+            'quizQuestion':'문제 4',
+            'quizAnswer': '4'
+        }, {
+            'quizQuestion':'문제 5',
+            'quizAnswer': '5'
+        }, {
+            'quizQuestion':'문제 6',
+            'quizAnswer': '6'
+        }, {
+            'quizQuestion':'문제 7',
+            'quizAnswer': '7'
+        }, {
+            'quizQuestion':'문제 8',
+            'quizAnswer': '8'
+        }, {
+            'quizQuestion':'문제 9',
+            'quizAnswer': '9'
+        }, {
+            'quizQuestion':'문제 10',
+            'quizAnswer': '10'
+        }, {
+            'quizQuestion':'문제4',
+            'quizAnswer': '4'
+        }, {
+            'quizQuestion':'문제 11',
+            'quizAnswer': '11'
+        }, {
+            'quizQuestion':'문제 12',
+            'quizAnswer': '12'
+        }, {
+            'quizQuestion':'문제 13',
+            'quizAnswer': '13'
+        }, {
+            'quizQuestion':'문제 14',
+            'quizAnswer': '14'
+        }, {
+            'quizQuestion':'문제 15',
+            'quizAnswer': '15'
+        }, {
+            'quizQuestion':'문제 16',
+            'quizAnswer': '16'
+        }, {
+            'quizQuestion':'문제 17',
+            'quizAnswer': '17'
+        }, {
+            'quizQuestion':'문제 18',
+            'quizAnswer': '18'
+        }, {
+            'quizQuestion':'문제 19',
+            'quizAnswer': '19'
+        }, {
+            'quizQuestion':'문제 20',
+            'quizAnswer': '20'
+        }];
+
+        console.log(quizList[1].quizAnswer);
+        console.log(quizList[1].quizQuestion);
+
+        const num_question = 3;         // 출제문제수        
+        const num_total_question = 20;   // 총 문제수
+        let correctAnswer = 0;          // 맞힌 횟수
+        
+        console.log('문제를 풀어봅시다.');
+
+        function quiz(){
+            // 3번을 반복하는 방법 - for문
+            for(let i=0; i<num_question; i++){
+                setTimeout(() => {
+                    let ran = Math.floor(Math.random() * num_total_question);     // 배열은 0~19 이므로 +1 할 필요 없음
+                    let input_answer = prompt(quizList[ran].quizQuestion);
+                    
+                    // 정답여부 if문 -> 맞은 문제 개수 확인
+                    if(input_answer == quizList[ran].quizAnswer){
+                        correctAnswer++;
+                    }
+                }, 3000);   // 3초 지연
+            }
+            setTimeout(quiz_result, 5000);
+            
+        }
+
+        function quiz_result(){
+            // 맞힌 개수가 0개인 상황 -> 다시 문제 출제
+                if(correctAnswer == 0){
+                    console.log('3문제 모두 오답입니다. 처음부터 다시 풀어봅시다.')
+                    quiz();
+                } else{
+                    console.log(`${num_question}개 중 ${correctAnswer}개 맞히셨습니다.`);
+                }
+        }
+
+        quiz();
+
+    </script>
+</head>
+<body>
+    <h2>퀴즈 맞추기 게임</h2>
+</body>
+</html>
