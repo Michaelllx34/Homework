@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API 호출하여 출력하기</title>
+    <script>
+        // fetch 함수를 통해 API URL에서 데이터를 JSON 형식으로 가져오기
+        function fetch__api(){
+            return fetch('https://api.odcloud.kr/api/15092758/v1/uddi:f6d69d13-cf01-4bdf-b766-c94913ab5381?page=1&perPage=10&serviceKey=zYqZJ7DS5TDkhod8GYgUmvzi2UO5y%2Bqsiasya9qB%2Fb920Yixaggc8yUx0W5DOtyQOFZJKBta5wr37Z8R50j%2Byw%3D%3D')
+                .then((response) => response.json())
+                .then((responseData) => responseData);
+        }
+
+        function diplayResult(datas){
+            const dataTag = document.querySelector('#data');
+                // id가 data인 태그의 내용을 저장
+            dataTag.innerHTML = datas.map((responseData) => setList(responseData)).join('');
+        }
+
+        function setList(datas){
+            return `<ol>순번:${datas.순번} 실적년도:${datas.실적년도} 폐기물분류코드:${datas.폐기물분류코드}</ol>`
+        }
+
+        // fetch 함수를 사용한 함수 fetch__api 실행
+        fetch__api()
+            .then((apiData) => {
+                console.log(apiData.data);
+                diplayResult(apiData.data);
+            });
+    </script>
+</head>
+<body>
+    <ol id="data"></ol>
+</body>
+</html>
